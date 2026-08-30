@@ -1,0 +1,68 @@
+{
+  "$schema": "https://github.com",
+  "logo": {
+    "type": "small",
+    "padding": {
+      "top": 1,
+      "left": 2
+    }
+  },
+  "display": {
+    "separator": "  ➔  ",
+    "key": {
+      "width": 14
+    }
+  },
+  "modules": [
+    "break",
+    {
+      "type": "title",
+      "key": "    user",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "os",
+      "key": "    os",
+      "keyColor": "blue",
+      "format": "{3}"
+    },
+    {
+      "type": "kernel",
+      "key": "    kernel",
+      "keyColor": "blue",
+      "format": "{2}"
+    },
+    {
+      "type": "uptime",
+      "key": "  uptime",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "packages",
+      "key": "  pkgs",
+      "keyColor": "magenta",
+      "format": "{1}"
+    },
+    {
+      "type": "shell",
+      "key": "    shell",
+      "keyColor": "yellow",
+      "format": "{1}"
+    },
+    {
+      "type": "terminal",
+      "key": "    term",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "memory",
+      "key": "    memory",
+      "keyColor": "green"
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "circle"
+    }
+  ]
+}
