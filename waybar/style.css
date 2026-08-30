@@ -1,0 +1,83 @@
+* {
+/* Обычный стандартный шрифт без глифов */
+font-family: "DejaVu Sans", "Arial", sans-serif;
+font-size: 13px;
+font-weight: bold;
+border: none;
+border-radius: 0;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.85);
+    color: #cdd6f4;
+}
+
+#group-hardware, #group-session {
+background-color: #313244;
+padding: 0px 4px;
+margin: 4px;
+border-radius: 4px;
+}
+
+#workspaces,
+#window,
+#clock,
+#wireplumber,
+#backlight,
+#network,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#disk,
+#power-profiles-daemon,
+#tray,
+#custom-hardware-wrap,
+#custom-session-wrap,
+#custom-lock,
+#custom-reboot,
+#custom-power {
+padding: 0 8px;
+color: #cdd6f4;
+background-color: transparent;
+margin: 4px 2px;
+}
+
+/* Оформление кнопок с цифрами рабочих столов */
+#workspaces button {
+padding: 0 8px;
+color: #89b4fa; /* Синий цвет для неактивных цифр */
+background-color: transparent;
+}
+
+#workspaces button.active {
+color: #f38ba8; /* Красный цвет для активной цифры */
+text-decoration: underline;
+}
+
+#workspaces button:hover {
+background: rgba(255, 255, 255, 0.1);
+border-radius: 2px;
+}
+
+#clock {
+color: #cdd6f4;
+background-color: #45475a;
+border-radius: 4px;
+margin: 4px 0;
+}
+
+#battery.critical:not(.charging),
+#temperature.critical {
+background-color: #f38ba8;
+color: #11111b;
+}
+
+#battery.warning:not(.charging) {
+background-color: #fab387;
+color: #11111b;
+}
+
+#tray {
+padding: 0 6px;
+}
