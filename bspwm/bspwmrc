@@ -1,57 +1,31 @@
 #!/bin/bash
 
+# --- АВТОЗАПУСК УТИЛИТ (ФОН, ПРОЗРАЧНОСТЬ, ИНТЕРФЕЙС) ---
+# Установка сплошного белого фона
+feh --bg-solid '#FFFFFF' &
+
+# Запуск композитора picom для прозрачности и размытия
+picom --config ~/.config/picom/picom.conf &
+
+# Запуск демона горячих клавиш sxhkd (ищет стандартный конфиг ~/.config/sxhkd/sxhkdrc)
+pgrep -x sxhkd > /dev/null || sxhkd &
+
 # --- НАСТРОЙКА РАСКЛАДКИ КЛАВИАТУРЫ ---
-localectl set-x11-keymap us,ru pc105 "" grp:shift_alt_toggle &
+# Использовать setxkbmap для текущей X-сессии вполне достаточно
 setxkbmap -layout us,ru -option grp:shift_alt_toggle &
 
 # --- НАСТРОЙКИ РАБОЧИХ СТОЛОВ И ОКОН ---
-# Переименовали рабочие столы в цифры от 1 до 10 для удобства
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 bspc config border_width         2
 bspc config window_gap          10
 
+# Цвет рамок окон (адаптирован, чтобы не теряться на белом фоне)
 bspc config normal_border_color  "#4c566a"
 bspc config active_border_color  "#81a1c1"
-bspc config focused_border_color "#88c0d0"
+bspc config focused_border_color "#5e81ac"  # Сделали чуть темнее для контраста с белым
 bspc config presel_feedback_color "#5e81ac"
 
 bspc config focus_follows_pointer true
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
-
-# --- ГОРЯЧИЕ КЛАВИШИ ---
-pgrep -x sxhkd > /dev/null || sxhkd -c /dev/stdin <<EOF &
-# Открыть Kitty терминал по Win + Q
-super + q
-	kitty
-
-# Открыть Firefox по Win + B
-super + b
-	firefox
-
-# Открыть Dolphin по Win + E
-super + e
-	dolphin
-
-# Переключить окно в плавающий режим / плитку по Win + V
-super + v
-	bspc node -t ~floating
-
-# Закрыть активное окно по Win + C
-super + c
-	bspc node -c
-
-# --- НАВИГАЦИЯ ПО РАБОЧИМ СТОЛАМ (Win + 1-9) ---
-# Переключиться на рабочий стол 1-9 (или 0 для десятого)
-super + {1-9,0}
-	bspc desktop -f {1-9,10}
-
-# Переместить активное окно на рабочий стол 1-9 (Win + Shift + 1-9)
-super + shift + {1-9,0}
-	bspc node -d {1-9,10}
-
-# Перезапустить bspwm (Win + Alt + R)
-super + alt + r
-	bspc wm -r
-EOF
